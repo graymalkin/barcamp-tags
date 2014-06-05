@@ -13,7 +13,7 @@ This is a dirty script to generate names for on name tags for barcamp. It's desi
 	    
 	    ```
 	    wget https://pypi.python.org/packages/source/d/dxfwrite/dxfwrite-1.2.0.tar.gz
-	    tar -xfv dxfwrite-1.2.0.tar.gz
+	    tar -xvf dxfwrite-1.2.0.tar.gz
 	    python dxfwrite-1.2.0/setup.py install
 	    ```
 
