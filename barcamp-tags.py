@@ -1,5 +1,5 @@
 # I have no idea what I'm doing.
-import sys, getopt, csv
+import sys, getopt
 from dxfwrite import DXFEngine as dxf
 
 offsetX = 7.08
@@ -29,28 +29,27 @@ def main(argv):
 	row = 1
 	column = 1
 	with open(datafile, 'rb') as csvfile:
-		data = csv.reader(csvfile, delimiter=',', quotechar='|')
+		data = csvfile.read().split(',')
 		# I don't understand python.
-		for x in data:
-			for item in x:
-				x = row * 85.6
-				y = column * 53.98
+		for item in data:
+			x = row * 85.6
+			y = column * 53.98
 
-				print item
+			print item
 
-				# Append \n to long names
-				item = item.replace(' ', '\r\n', 1)
+			# Append \n to long names
+			item = item.replace(' ', '\r\n', 1)
 
-				text = dxf.mtext(item, (x+offsetX, y+offsetY), height=8.5, rotation=0)
-				text.layer = 'TEXT'
-				text.color = 5 # Blue
-				drawing.add(text)
+			text = dxf.mtext(item, (x+offsetX, y+offsetY), height=8.5, rotation=0)
+			text.layer = 'TEXT'
+			text.color = 5 # Blue
+			drawing.add(text)
 
-				# Increment rows and columns (lim 6 rows)
-				row = row + 1
-				if row == 7:
-					row = 1
-					column = column + 1
+			# Increment rows and columns (lim 6 rows)
+			row = row + 1
+			if row == 7:
+				row = 1
+				column = column + 1
 
 
 	drawing.saveas(outputfile)
